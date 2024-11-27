@@ -1,28 +1,57 @@
 <head>
-    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES03 - Form validation</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="validation.js"></script>
 </head>
 <body>
-    <form action="" method="post">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" placeholder="*obbligatorio" required pattern="[a-zA-Z ]+"><br><br>
-
-        <label for="cognome">Cognome:</label>
-        <input type="text" id="cognome" name="cognome" placeholder="*obbligatorio" required pattern="[a-zA-Z ]+"><br><br>
-
-        <label for="data_nascita">data di nascita:</label>
-        <input type="date" id="data_nascita" name="data_nascita" placeholder="*obbligatorio" required><br><br>
-
-        <label for="codice_fiscale">codice fiscale:</label>
-        <input type="text" id="codice_fiscale" name="codice_fiscale" placeholder="opzionale"><br><br>
-
-        <label for="email">email:</label>
-        <input type="text" id="email" name="email" placeholder="obbligatorio" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"><br><br>
-
-        <label for="cellulare">numero cellulare</label>
-        <input type="text" id="cellulare" name="cellulare" placeholder="opzionale es:391234567890" pattern="^(\+39)?\d{12}$"><br><br>
+    
+    <form action="validation.php" method="post">
+        <label for="nome">Nome*:</label>
+        <input type="text" name="nome" pattern="[a-zA-Z]+" required >
+        <br>
+        <label for="cognome">Cognome*:</label>
+        <input type="text" name="cognome" pattern="[a-zA-Z'\s]+" required>
+        <br>
+        <label for="data">Data di nascita*:</label>
+        <input type="date" name="data" required>
+        <br>
+        <label for="codice_fiscale">Codice fiscale</label>
+        <input type="text" name="codice_fiscale" pattern="[a-zA-Z0-9]{16}" style="text-transform:uppercase">
+        <br>
+        <label for="email">Email*:</label>
+        <input type="email" name="email" required>
+        <br>
+        <label for="tel">Numero cellulare (con prefisso):</label>
+        <input type="tel" name="tel" pattern="[0-9]{12}">
+        <br>
+        <h3>Indirizzo</h3>
+        <br>
+        <label for="via">Via*:</label>
+        <input type="text" name="via" pattern="[a-zA-Z']+" required>
+        <label for="nCivico">N. Civico*:</label>
+        <input type="text" name="nCivico" pattern="[0-9]+" required>
+        <br>
+        <label for="cap">CAP*:</label>
+        <input type="number" name="cap" pattern="[0-9]{5}" required>
+        <br>
+        <label for="comune">Comune*:</label>
+        <input type="text" name="comune" pattern="[a-zA-Z']+" required>
+        <br>
+        <label for="provincia">Provincia (sigla)*:</label>
+        <input type="text" name="provincia" pattern="[a-zA-Z]{2}" style="text-transform:uppercase" required>
+        <br>
+        <label for="username">Username*:</label>
+        <input type="text" name="username" pattern="[a-zA-Z0-9]{3,}" required>
+        <br>
+        <label for="password">Password*:</label>
+        <input type="password" name="password" pattern="{8,}" required>
         
-        <input type="submit" value="Invia">
-
+        <br>
+        <input type="submit" name="submit">
     </form>
+
 </body>
 </html>
