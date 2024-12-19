@@ -14,7 +14,7 @@ CREATE TABLE Veicoli (
     veicolo_id INT AUTO_INCREMENT PRIMARY KEY,
     modello VARCHAR(50) NOT NULL,
     marca VARCHAR(50) NOT NULL,
-    anno INT CHECK (anno >= 2000 AND anno <= YEAR(CURDATE())),
+    anno INT CHECK (anno >= 2000 AND anno <= 2024),
     targa VARCHAR(15) UNIQUE NOT NULL,
     prezzo_giornaliero DECIMAL(10, 2) NOT NULL
 );
@@ -27,7 +27,7 @@ CREATE TABLE Noleggi (
     data_fine DATE NOT NULL,
     totale DECIMAL(10, 2) NOT NULL CHECK (totale > 0),
     FOREIGN KEY (cliente_id) REFERENCES Clienti(cliente_id) ON DELETE CASCADE,
-    FOREIGN KEY (veicolo_id) REFERENCES Veicoli(veicolo_id) ON DELETE SET NULL
+    FOREIGN KEY (veicolo_id) REFERENCES Veicoli(veicolo_id) ON DELETE CASCADE
 );
 
 CREATE TABLE Pagamenti (
@@ -78,11 +78,22 @@ CREATE TABLE Pagamenti (
 
 INSERT INTO Clienti (nome, cognome) VALUES ('Giulia', 'Rossi');
 
+INSERT INTO Clienti (nome, cognome, email) VALUES ('Giulia', 'Rossi','mario.rossi@email.com');
+
 INSERT INTO Veicoli (modello, marca, anno, targa, prezzo_giornaliero)
 VALUES ('Focus', 'Ford', 2022, 'AB123CD', 40.00);
 
+INSERT INTO Veicoli (modello, marca, anno, targa, prezzo_giornaliero)
+VALUES ('Focus', 'Ford', 1999, 'AB123CD', 40.00);
+
 INSERT INTO Noleggi (cliente_id, veicolo_id, data_inizio, data_fine, totale)
 VALUES (1, 3, '2024-11-15', '2024-11-10', 150.00);
+
+INSERT INTO Noleggi (cliente_id, veicolo_id, data_inizio, data_fine, totale)
+VALUES (1, 3, '2024-11-15', '2024-11-10', 0);
+
+INSERT INTO Noleggi (cliente_id, veicolo_id, data_inizio, data_fine, totale)
+VALUES (21, 3, '2024-11-15', '2024-11-10', 150.00);
 
 DELETE FROM Clienti WHERE cliente_id = 1;
 
