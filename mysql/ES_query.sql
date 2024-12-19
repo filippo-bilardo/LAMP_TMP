@@ -173,5 +173,6 @@ SELECT * FROM Libri ORDER BY AnnoPubblicazione LIMIT 5 OFFSET 5;
 SELECT * FROM Libri WHERE AnnoPubblicazione >= 1980 AND AnnoPubblicazione <= 1990;
 
 -- -17- Libri pubblicati dagli autori con id (1, 5 e 6):
-SELECT l.Titolo, a.Nome FROM Libri l JOIN Autori a ON l.Autore = a.Nome WHERE a.ID = 1 OR a.ID = 5 OR a.ID = 6;
+SELECT * FROM Libri WHERE Autore IN (1, 5, 6);
+
 
